@@ -11,15 +11,27 @@ pipeline {
                     echo "Hello checkout" 
                       }
                 }
-            stage ('package stage') {
+                        stage ('package stage') {
                 steps {
-                  echo "second stage"
+                  sh  '''
+                        mkdir -p output                 
+                      '''
+                  writeFile file: "output/usefulfile.txt", text: "This file is useful, need to archive it."
+                  writeFile file: "output/uselessfile.md", text: "This file is useless, no need to archive it."
                   }
-                }
+                } 
             stage ('archive stage') {
                 steps {
                 echo "deployed"                  
             }
           }
         }
+		
+	post { 
+	                success {
+                    archiveArtifacts artifacts: 'output/*.txt', excludes: 'output/*.md'
+                    deleteDir()
+            } 
+
+	}
   }
