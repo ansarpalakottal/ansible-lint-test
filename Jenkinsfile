@@ -1,6 +1,7 @@
 #!groovy​
 pipeline {
-    agent { label 'dev' }
+    agent { label 'dev' 
+            customWorkspace '/home/ansar' }
         stages {
             stage ('Ansible Code checkout ') {
                 steps {
