@@ -14,7 +14,7 @@ pipeline {
                         stage ('package stage') {
                 steps {
                   sh  '''
-                        mkdir -p /tmp/output                 
+                        mkdir -p output                 
                       '''
                   writeFile file: "output/usefulfile.txt", text: "This file is useful, need to archive it."
                   writeFile file: "output/uselessfile.md", text: "This file is useless, no need to archive it."
