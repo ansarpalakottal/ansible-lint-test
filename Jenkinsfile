@@ -2,7 +2,7 @@
 pipeline {
     agent { node {
                     label 'dev' 
-                    customWorkspace '/home/ansar' 
+                    customWorkspace '/tmp/customWorkspace' 
     }
     }
         stages {
